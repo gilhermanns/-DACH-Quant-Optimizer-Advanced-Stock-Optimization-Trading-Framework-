@@ -1,0 +1,2 @@
+# -DACH-Quant-Optimizer-Advanced-Stock-Optimization-Trading-Framework-
+nstitutional-grade quant framework for DACH markets (XETRA/SIX). Features 7 optimized strategies including ML-regime detection, HRP portfolio management, and TDA crash signals. Engineered for 2026-2027 market dynamics with original alpha-generating logic for German, Swiss, and Austrian equities. Modular, production-ready, and SEO-optimized.
