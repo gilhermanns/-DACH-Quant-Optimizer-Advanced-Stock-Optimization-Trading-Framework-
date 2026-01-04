@@ -46,12 +46,12 @@ pip install -r requirements.txt
 ### 3. Running a Backtest
 **Quick Start (Strategy Comparison Dashboard):**
 ```bash
-python run_all.py
+python3 run_all.py
 ```
 
 **Single Strategy Backtest:**
 ```bash
-python main.py --strategy ensemble --asset DAX --start 2022-01-01
+python3 main.py --strategy ensemble --asset DAX --start 2022-01-01
 ```
 
 ## 📂 Repository Structure
