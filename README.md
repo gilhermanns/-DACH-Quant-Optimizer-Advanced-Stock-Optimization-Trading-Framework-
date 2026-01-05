@@ -1,74 +1,88 @@
-# gilhermanns-QuantPortfolio: Advanced DACH Quant Research 📈
+# 📈 Institutional DACH Quant Optimizer
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Market: DACH](https://img.shields.io/badge/Market-DACH-red.svg)](https://www.deutsche-boerse.com/)
+[![Quant-Finance](https://img.shields.io/badge/Focus-Quant%20Finance-orange.svg)]()
 
-An institutional-grade quantitative trading framework focused on the **DACH region** (Germany, Austria, Switzerland). This repository implements 7 advanced strategies optimized for XETRA, SIX, and VIRT-X market dynamics, featuring original alpha-generating logic designed for the 2026-2027 market environment.
+An institutional-grade quantitative trading and portfolio optimization framework specifically engineered for the **DACH region (Germany, Austria, Switzerland)**. This system integrates advanced alpha-generating strategies with robust risk management and topological data analysis.
 
-## 🌟 Core Architecture
-This project is built on a modular, production-ready architecture designed for professional quant research:
-- **Alpha Ensemble Hybrid**: A multi-factor engine combining momentum, mean-reversion, and adaptive volatility scaling.
-- **DACH Mid-Cap Liquidity**: Exploits institutional liquidity gaps in MDAX/SDAX equities.
-- **Swiss Regime SVM**: Non-linear classification of SMI market states using Support Vector Machines.
-- **TDA Crash Detection**: Structural instability detection using Topological Data Analysis (Persistent Homology).
-- **Institutional Backtester**: European-aware engine with adaptive slippage and commission models.
+---
 
-## 📊 Strategy Performance (2021-2025 Backtest)
+## 💡 Core Value Proposition
 
-| Strategy | Focus Asset | CAGR | Sharpe | Max DD | Alpha Source |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Alpha Ensemble** | DAX 40 | 19.4% | 2.05 | 9.2% | Multi-Factor |
-| **Mid-Cap Liquidity** | MDAX/SDAX | 15.8% | 1.72 | 11.5% | Liquidity Edge |
-| **Adaptive Momentum** | ^GDAXI | 13.5% | 1.55 | 8.4% | Trend Following |
-| **Swiss SVM Regime** | SMI | 12.1% | 1.82 | 6.8% | ML Classification |
-| **Cross-Asset Arb** | SAP/ORCL | 10.2% | 2.25 | 4.9% | Statistical Arb |
-| **Deep Alpha (LSTM)** | Siemens | 22.8% | 1.92 | 12.1% | Neural Networks |
-| **TDA Crash Signal** | DAX | 11.5% | 1.65 | 7.5% | Topology |
+The DACH markets (XETRA, SIX) present unique liquidity and regime dynamics. This framework provides a professional research environment to:
 
-## 🛠️ Installation & Setup
+| Feature | Benefit |
+| :--- | :--- |
+| **Multi-Strategy Alpha** | Includes 7 optimized strategies from ML-based regime detection to Stat-Arb. |
+| **HRP Optimization** | Uses Hierarchical Risk Parity for superior portfolio stability vs. Mean-Variance. |
+| **TDA Crash Detection** | Employs Topological Data Analysis to identify market instabilities before crashes. |
+| **Institutional Backtesting** | Accounts for European commission models and adaptive slippage. |
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/gilhermanns/gilhermanns-QuantPortfolio.git
-cd gilhermanns-QuantPortfolio
+---
+
+## 🛠 Technical Architecture
+
+### 1. Strategy Engine (`strategies/`)
+A modular library of 7 high-conviction strategies:
+*   **Swiss Regime SVM**: ML-based regime classification for the SMI.
+*   **Deep Alpha (LSTM)**: Neural network for short-term price prediction.
+*   **TDA Crash Signal**: Topological monitoring of market manifolds.
+*   **Cross-Asset Stat-Arb**: Statistical arbitrage between DAX and international peers.
+
+### 2. Portfolio Management (`portfolio.py`)
+Implements **Hierarchical Risk Parity (HRP)**, which uses graph theory to cluster assets by correlation, ensuring true diversification even during high-correlation market events.
+
+### 3. Data & Execution (`data_fetcher.py` & `backtester.py`)
+Handles automated ticker mapping for XETRA/SIX and provides a high-fidelity backtesting environment with realistic execution constraints.
+
+---
+
+## 📊 Project Structure
+
+```text
+/DACH-Quant-Optimizer
+├── README.md               # Comprehensive project documentation
+├── LIMITATIONS.md          # Mature disclosure of system boundaries
+├── requirements.txt        # Python dependencies
+├── run_all.py              # Global strategy dashboard (Demo)
+├── main.py                 # Strategy execution CLI
+├── backtester.py           # Institutional backtesting engine
+├── data_fetcher.py         # Automated DACH data ingestion
+├── portfolio.py            # HRP portfolio optimizer
+└── strategies/             # Modular strategy library
+    ├── swiss_regime_svm.py
+    ├── lstm_deep_alpha.py
+    └── tda_crash_detection.py
 ```
 
-### 2. Environment Setup
-It is highly recommended to use a virtual environment.
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-# Note: If TA-Lib installation fails, search for pre-compiled binaries for your OS/Python version.
-```
+---
 
-### 3. Running a Backtest
-**Quick Start (Strategy Comparison Dashboard):**
+## 🚦 Getting Started
+
+### Prerequisites
+*   Python 3.9+
+*   `pandas`, `numpy`, `scikit-learn`, `backtrader`
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/gilhermanns/-DACH-Quant-Optimizer-Advanced-Stock-Optimization-Trading-Framework-.git
+   cd -DACH-Quant-Optimizer-Advanced-Stock-Optimization-Trading-Framework-
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Running the Dashboard
+Execute the global comparison dashboard to see simulated performance across all DACH strategies:
 ```bash
 python3 run_all.py
 ```
 
-**Single Strategy Backtest:**
-```bash
-python3 main.py --strategy ensemble --asset DAX --start 2022-01-01
-```
-
-## 📂 Repository Structure
-- `strategies/`: Advanced trading algorithms with original logic.
-- `backtester.py`: Institutional-grade backtesting engine.
-- `portfolio.py`: Hierarchical Risk Parity (HRP) optimization.
-- `data_fetcher.py`: Automated DACH market data retrieval.
-- `notebooks/`: Research and visualization demos.
-
-## 🔮 2026-2027 Optimization
-This framework includes specific modules for the upcoming market cycle:
-- **ECB Pivot Filters**: Adaptive logic for interest rate regime shifts.
-- **Energy Transition Alpha**: Feature engineering for German industrial volatility.
-- **Systemic Risk Hedging**: TDA-based early warning signals for European market stress.
-
-## 📄 License
-Distributed under the MIT License. See `LICENSE` for more information.
-
 ---
-*Disclaimer: This software is for educational and research purposes only. Past performance is not indicative of future results.*
+
+## 🛡 License & Disclaimer
+
+This project is licensed under the MIT License. Quantitative trading involves significant risk. This framework is for research and educational purposes only.
