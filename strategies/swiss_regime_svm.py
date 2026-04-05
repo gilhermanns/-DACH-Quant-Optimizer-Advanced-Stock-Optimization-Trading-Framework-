@@ -34,4 +34,26 @@ class SwissRegimeSVM(bt.Strategy):
         return [np.std(rets), (rets[-1]-rets[0])/rets[0]]
 
     def _train(self):
-        pass
+        # Collect historical data for training
+        closes = np.array([self.data.close[i] for i in range(-252, 0)])
+        returns = np.diff(closes) / closes[:-1]
+        
+        X = []
+        y = []
+        
+        # Simple labeling: 1 if next 5 days return is positive, else 0
+        for i in range(20, len(returns) - 5):
+            window = returns[i-20:i]
+            vol = np.std(window)
+            mom = (closes[i] - closes[i-20]) / closes[i-20]
+            X.append([vol, mom])
+            
+            future_ret = (closes[i+5] - closes[i]) / closes[i]
+            y.append(1 if future_ret > 0 else 0)
+            
+        if len(X) > 50:
+            X = np.array(X)
+            y = np.array(y)
+            self.scaler.fit(X)
+            self.svm.fit(self.scaler.transform(X), y)
+            self.ready = True
