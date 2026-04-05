@@ -44,10 +44,19 @@ class InstitutionalBacktester:
         # Calculate CAGR for 4 years (2021-2025)
         cagr = ((final / self.cash) ** (1 / 4) - 1) * 100
         
+        sharpe = strat.analyzers.sharpe.get_analysis().get('sharperatio', 0)
+        if sharpe is None: sharpe = 0
+        
+        max_dd = strat.analyzers.drawdown.get_analysis().get('max', {}).get('drawdown', 0)
+        if max_dd is None: max_dd = 0
+        
+        returns_val = strat.analyzers.returns.get_analysis().get('rtot', 0)
+        if returns_val is None: returns_val = 0
+
         return cerebro, {
-            "Sharpe": round(strat.analyzers.sharpe.get_analysis().get('sharperatio', 0), 2),
-            "MaxDD": round(strat.analyzers.drawdown.get_analysis().get('max', {}).get('drawdown', 0), 2),
-            "Return": round(strat.analyzers.returns.get_analysis().get('rtot', 0) * 100, 2),
+            "Sharpe": round(sharpe, 2),
+            "MaxDD": round(max_dd, 2),
+            "Return": round(returns_val * 100, 2),
             "CAGR": round(cagr, 2),
             "FinalValue": round(final, 2)
         }

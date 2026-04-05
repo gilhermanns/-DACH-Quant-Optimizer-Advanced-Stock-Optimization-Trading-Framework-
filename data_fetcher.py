@@ -36,6 +36,9 @@ class AdvancedDACHFetcher:
             print(f"Fetching {yf_t} from yfinance...")
             df = yf.download(yf_t, start=start, end=end, interval=interval)
             if not df.empty:
+                # Fix for MultiIndex columns in newer yfinance versions
+                if isinstance(df.columns, pd.MultiIndex):
+                    df.columns = df.columns.get_level_values(0)
                 df.to_csv(path)
                 data_dict[t] = df
             else:
